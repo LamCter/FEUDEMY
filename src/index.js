@@ -8,15 +8,23 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import User from "./components/User/User";
 import Admin from "./components/Admin/Admin";
+import HomePage from "./components/Home/HomePage";
+import ManageUser from "./components/Admin/Content/ManageUser";
+import DashBoard from "./components/Admin/Content/Dashboard";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Provider store={store}>
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<App />} />
-        <Route path="/users" element={<User />} />
-        <Route path="/admins" element={<Admin />} />
+        <Route path="/" element={<App />}>
+          <Route index element={<HomePage />} />
+          <Route path="users" element={<User />} />
+        </Route>
+        <Route path="admins" element={<Admin />}>
+          <Route index element={<DashBoard />} />
+          <Route path="manageUser" element={<ManageUser />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   </Provider>
